@@ -11,7 +11,7 @@ import java.util.List;
  * Created by Malika(mxp134930) on 11/15/2015.
  */
 public interface BookRepository extends JpaRepository<Book, Long> {
-    Book findByBookTitle(String title);
+    List<Book> findByBookTitle(String title);
 
     @Query("select distinct book from Book book where (:authorName) in elements(book.authorNames)")
     List<Book> findByAuthorName(@Param("authorName")String authorName);
