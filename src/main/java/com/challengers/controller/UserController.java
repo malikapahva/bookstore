@@ -22,12 +22,6 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-    @RequestMapping("/getall")
-    public String getAllUsers() throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.writeValueAsString(userRepository.findAll());
-    }
-
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseEntity<?> login(@RequestBody String userName){
         User user = userRepository.findByUserName(userName);

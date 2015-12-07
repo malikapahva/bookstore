@@ -143,6 +143,9 @@ public class Book implements Serializable {
     }
 
     public void setSold(int sold) {
+        if(sold > quantity){
+            throw new RuntimeException("Not in Stock");
+        }
         this.sold = sold;
     }
 
