@@ -1,8 +1,10 @@
 package com.challengers.entities;
 
+import com.challengers.services.LocalDateConverter;
 import com.challengers.util.UniqueIdGenerator;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -28,6 +30,10 @@ public class Transaction {
     })
     private Set<BookTransactionInfo> bookTransactionInfo = new HashSet<>();
 
+    @Column(name = "transaction_date")
+    @Convert(converter = LocalDateConverter.class)
+    private LocalDate transactionDate;
+
     public Transaction() {
     }
 
@@ -35,6 +41,7 @@ public class Transaction {
         this.transactionId = UniqueIdGenerator.generateId();
         this.userId = userId;
         this.bookTransactionInfo = bookTransactionInfo;
+        this.transactionDate = LocalDate.now();
     }
 
     public Long getTransactionId() {
@@ -59,5 +66,13 @@ public class Transaction {
 
     public void setBookTransactionInfo(Set<BookTransactionInfo> bookTransactionInfo) {
         this.bookTransactionInfo = bookTransactionInfo;
+    }
+
+    public LocalDate getTransactionDate() {
+        return transactionDate;
+    }
+
+    public void setTransactionDate(LocalDate transactionDate) {
+        this.transactionDate = transactionDate;
     }
 }

@@ -2,7 +2,6 @@ package com.challengers.repo;
 
 import com.challengers.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
 /**
  * Created by Malika(mxp134930) on 11/6/2015.

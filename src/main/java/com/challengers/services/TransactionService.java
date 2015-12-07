@@ -7,10 +7,11 @@ import com.challengers.entities.Transaction;
 import com.challengers.repo.BookRepository;
 import com.challengers.repo.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashSet;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 
@@ -41,7 +42,16 @@ public class TransactionService {
     }
 
     @Transactional(readOnly = true)
+    @Cacheable(value = "defaultCache", key = "T(com.challengers.services.KeyGenerator).generateKey(#userId, #transactionDate)")
+    public List<Transaction> getAllTransactionsByDate(Long userId, LocalDate transactionDate){
+        System.out.println("Not in Cache \n Fetching data from database for user : " + userId);
+        return transactionRepository.findByUserIdAndTransactionDate(userId, transactionDate);
+    }
+
+    @Transactional(readOnly = true)
+    @Cacheable(value = "defaultCache", key = "#userId")
     public List<Transaction> getAllTransactions(Long userId){
+        System.out.println("Not in Cache \n Fetching data from database for user : " + userId);
         return transactionRepository.findByUserId(userId);
     }
 }

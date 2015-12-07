@@ -11,6 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
@@ -38,6 +41,13 @@ public class TransactionController {
         catch (Exception ex){
             return new ResponseEntity<>("Transaction Failed " + ex.getMessage(), httpHeaders, HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @RequestMapping("/gettransactions/{userId}/{transactionDate}")
+    public List<Transaction> getAllTransactionsByDate(@PathVariable Long userId, @PathVariable String transactionDate) throws JsonProcessingException, ParseException {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date = LocalDate.parse(transactionDate, formatter);
+        return transactionService.getAllTransactionsByDate(userId, date);
     }
 
     @RequestMapping("/gettransactions/{userId}")

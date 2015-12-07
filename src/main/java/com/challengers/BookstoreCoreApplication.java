@@ -1,30 +1,19 @@
 package com.challengers;
 
-import com.challengers.entities.Book;
-import com.challengers.entities.BookTransactionInfo;
-import com.challengers.entities.Transaction;
-import com.challengers.entities.User;
-import com.challengers.repo.BookRepository;
-import com.challengers.repo.TransactionRepository;
-import com.challengers.repo.UserRepository;
-import jersey.repackaged.com.google.common.collect.Lists;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-
-import java.util.*;
 
 @SpringBootApplication
 public class BookstoreCoreApplication {
 
     public static void main(String[] args) {
         ConfigurableApplicationContext applicationContext = SpringApplication.run(BookstoreCoreApplication.class, args);
-        TransactionRepository transactionRepository = applicationContext.getBean(TransactionRepository.class);
+        /*TransactionRepository transactionRepository = applicationContext.getBean(TransactionRepository.class);
         Set<BookTransactionInfo> bookTransactionInfos = new HashSet<>();
-        bookTransactionInfos.add(new BookTransactionInfo(1978185706830476223L, 2));
-        Transaction transaction = new Transaction(4696283733126237149L, bookTransactionInfos);
-       // transactionRepository.save(transaction);
+        bookTransactionInfos.add(new BookTransactionInfo(1978185706830476223L, 1));
+        Transaction transaction = new Transaction(8670074797002309331L, bookTransactionInfos);
+        transactionRepository.save(transaction);*/
 
        /* BookRepository bookRepository = applicationContext.getBean(BookRepository.class);
         bookRepository.deleteAll();

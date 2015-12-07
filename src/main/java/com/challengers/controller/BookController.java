@@ -56,31 +56,31 @@ public class BookController {
 
     @RequestMapping(value = "/addbook", method = RequestMethod.POST)
     public ResponseEntity<?> addBook(@RequestBody BookDto bookDto){
-        HttpHeaders httpHeaders = new HttpHeaders();
         Book book = bookService.createBook(bookDto);
+        HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setLocation(ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .buildAndExpand()
                 .toUri());
-        return new ResponseEntity<>("Book Added Successfully, book id : " + book.getBookId(), httpHeaders, HttpStatus.CREATED);
+        if(book != null){
+            return new ResponseEntity<>("Book already existed.", httpHeaders, HttpStatus.BAD_REQUEST);
+        } else {
+            return new ResponseEntity<>("Book Added Successfully, book id : " + book.getBookId(), httpHeaders, HttpStatus.CREATED);
+        }
     }
 
     @RequestMapping(value = "/updatebook", method = RequestMethod.POST)
     public ResponseEntity<?> updateBook(@RequestBody BookDto bookDto){
         HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setLocation(ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .buildAndExpand()
+                .toUri());
         Book bookToUpdate = bookService.updateBook(bookDto);
         if(bookToUpdate != null){
-            httpHeaders.setLocation(ServletUriComponentsBuilder
-            .fromCurrentRequest()
-            .buildAndExpand()
-            .toUri());
             return new ResponseEntity<>("Book Updated Successfully", httpHeaders, HttpStatus.OK);
         }
         else {
-            httpHeaders.setLocation(ServletUriComponentsBuilder
-                    .fromCurrentRequest()
-                    .buildAndExpand()
-                    .toUri());
             return new ResponseEntity<>("Book not found, book Id : " + bookDto.getBookId(), httpHeaders, HttpStatus.NOT_FOUND);
 
         }
