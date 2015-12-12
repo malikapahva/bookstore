@@ -69,19 +69,19 @@ public class BookController {
         }
     }
 
-    @RequestMapping(value = "/updatebook", method = RequestMethod.POST)
-    public ResponseEntity<?> updateBook(@RequestBody BookDto bookDto){
+    @RequestMapping(value = "/updatebook/{bookId}", method = RequestMethod.POST)
+    public ResponseEntity<?> updateBook(@PathVariable Long bookId, @RequestBody BookDto bookDto){
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setLocation(ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .buildAndExpand()
                 .toUri());
-        Book bookToUpdate = bookService.updateBook(bookDto);
+        Book bookToUpdate = bookService.updateBook(bookId, bookDto);
         if(bookToUpdate != null){
             return new ResponseEntity<>("Book Updated Successfully", httpHeaders, HttpStatus.OK);
         }
         else {
-            return new ResponseEntity<>("Book not found, book Id : " + bookDto.getBookId(), httpHeaders, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Book not found, book Id : " + bookId, httpHeaders, HttpStatus.NOT_FOUND);
 
         }
     }

@@ -35,8 +35,8 @@ public class BookService {
 
     @Transactional(readOnly = false)
     @CacheEvict(value = "defaultCache", key = "#bookDto.isbn")
-    public Book updateBook(BookDto bookDto) {
-        Book book = bookRepository.findOne(bookDto.getBookId());
+    public Book updateBook(Long bookId, BookDto bookDto) {
+        Book book = bookRepository.findOne(bookId);
         if(book != null) {
             book.setBookTitle(bookDto.getBookTitle());
             book.setAuthorNames(bookDto.getAuthorNames());

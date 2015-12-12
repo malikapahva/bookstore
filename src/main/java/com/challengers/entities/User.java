@@ -50,10 +50,16 @@ public class User implements Serializable {
     @Column(name = "country")
     private String country;
 
+    @Column(name = "role")
+    private String role;
+
+    @Column(name = "email")
+    private String email;
+
     public User() {
     }
 
-    public User(String userName, String password, String firstName, String middleName, String lastName, String street, String city, String zipCode, String state, String country) {
+    public User(String userName, String password, String firstName, String middleName, String lastName, String street, String city, String zipCode, String state, String country, String role, String email) {
         this.userId = UniqueIdGenerator.generateId();
         this.userName = userName;
         this.password = password;
@@ -65,6 +71,8 @@ public class User implements Serializable {
         this.zipCode = zipCode;
         this.state = state;
         this.country = country;
+        this.role = role;
+        this.email = email;
     }
 
     public Long getUserId() {
@@ -155,6 +163,22 @@ public class User implements Serializable {
         this.country = country;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -169,6 +193,8 @@ public class User implements Serializable {
                 ", zipCode='" + zipCode + '\'' +
                 ", state='" + state + '\'' +
                 ", country='" + country + '\'' +
+                ", role='" + role + '\'' +
+                ", email='" + email + '\'' +
                 '}';
     }
 }

@@ -25,10 +25,14 @@ public class UserDto {
 
     private String country;
 
+    private String role;
+
+    private String email;
+
     public UserDto() {
     }
 
-    public UserDto(String userName, String password, String firstName, String middleName, String lastName, String street, String city, String zipCode, String state, String country) {
+    public UserDto(String userName, String password, String firstName, String middleName, String lastName, String street, String city, String zipCode, String state, String country, String role, String email) {
         this.userName = userName;
         this.password = password;
         this.firstName = firstName;
@@ -39,6 +43,8 @@ public class UserDto {
         this.zipCode = zipCode;
         this.state = state;
         this.country = country;
+        this.role = role;
+        this.email = email;
     }
 
     public String getUserName() {
@@ -119,5 +125,21 @@ public class UserDto {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

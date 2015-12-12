@@ -30,7 +30,7 @@ public class UserService {
         User existedUser = userRepository.findByUserName(userDto.getUserName());
         if(existedUser == null) {
             User user = new User(userDto.getUserName(), userDto.getPassword(), userDto.getFirstName(), userDto.getMiddleName(), userDto.getLastName(),
-                    userDto.getStreet(), userDto.getCity(), userDto.getZipCode(), userDto.getState(), userDto.getCountry());
+                    userDto.getStreet(), userDto.getCity(), userDto.getZipCode(), userDto.getState(), userDto.getCountry(), userDto.getRole(), userDto.getEmail());
             return userRepository.save(user);
         } else
             return null;
@@ -46,6 +46,7 @@ public class UserService {
             user.setFirstName(userDto.getFirstName());
             user.setMiddleName(userDto.getMiddleName());
             user.setLastName(userDto.getLastName());
+            user.setEmail(userDto.getEmail());
             user.setStreet(userDto.getStreet());
             user.setCity(userDto.getCity());
             user.setZipCode(userDto.getZipCode());
