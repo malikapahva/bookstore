@@ -44,7 +44,7 @@ public class UserController {
                 .buildAndExpand()
                 .toUri());
         User user = userService.registerUser(userDto);
-        if(user != null){
+        if(user == null){
             return new ResponseEntity<>("User with username " + userDto.getUserName() + " already existed.", httpHeaders, HttpStatus.BAD_REQUEST);
         } else {
             return new ResponseEntity<>("User Registered Successfully, user id : " + user.getUserId(), httpHeaders, HttpStatus.CREATED);

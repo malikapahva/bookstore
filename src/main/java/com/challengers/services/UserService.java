@@ -27,13 +27,14 @@ public class UserService {
     @Transactional(readOnly = false)
     @CachePut(value = "defaultCache", key = "#userDto.userName")
     public User registerUser(UserDto userDto) {
-        User existedUser = userRepository.findByUserName(userDto.getUserName());
-        if(existedUser == null) {
-            User user = new User(userDto.getUserName(), userDto.getPassword(), userDto.getFirstName(), userDto.getMiddleName(), userDto.getLastName(),
-                    userDto.getStreet(), userDto.getCity(), userDto.getZipCode(), userDto.getState(), userDto.getCountry(), userDto.getRole(), userDto.getEmail());
-            return userRepository.save(user);
-        } else
+        boolean existedUser = isExistedUser(userDto.getUserName());
+        if(existedUser){
             return null;
+        }
+        User user = new User(userDto.getUserName(), userDto.getPassword(), userDto.getFirstName(), userDto.getMiddleName(), userDto.getLastName(),
+            userDto.getStreet(), userDto.getCity(), userDto.getZipCode(), userDto.getState(), userDto.getCountry(), userDto.getRole(), userDto.getEmail());
+        return userRepository.save(user);
+
     }
 
     @Transactional(readOnly = false)
@@ -55,5 +56,10 @@ public class UserService {
             return userRepository.save(user);
         } else
             return null;
+    }
+
+    private boolean isExistedUser(String userName){
+        User user = userRepository.findByUserName(userName);
+        return user != null;
     }
 }
