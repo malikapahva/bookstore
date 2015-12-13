@@ -27,10 +27,12 @@ public class BookDto {
 
     private int sold;
 
+    private String image;
+
     public BookDto() {
     }
 
-    public BookDto(Long bookId, String bookTitle, Set<String> authorNames, Set<String> publisherNames, int publishedYear, String isbn, String language, double price, int quantity, int sold) {
+    public BookDto(Long bookId, String bookTitle, Set<String> authorNames, Set<String> publisherNames, int publishedYear, String isbn, String language, double price, int quantity, int sold, String image) {
         this.bookId = bookId;
         this.bookTitle = bookTitle;
         this.authorNames = authorNames;
@@ -41,6 +43,7 @@ public class BookDto {
         this.price = price;
         this.quantity = quantity;
         this.sold = sold;
+        this.image = image;
     }
 
     public Long getBookId() {
@@ -121,5 +124,13 @@ public class BookDto {
 
     public void setSold(int sold) {
         this.sold = sold;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

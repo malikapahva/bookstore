@@ -28,7 +28,7 @@ public class BookService {
         Book existedBook = bookRepository.findByIsbn(bookDto.getIsbn());
         if(existedBook == null){
         Book book = new Book(bookDto.getBookTitle(),bookDto.getAuthorNames(), bookDto.getPublisherNames(), bookDto.getPublishedYear(),
-                bookDto.getIsbn(), bookDto.getLanguage(), bookDto.getPrice(), bookDto.getQuantity(), bookDto.getSold());
+                bookDto.getIsbn(), bookDto.getLanguage(), bookDto.getPrice(), bookDto.getQuantity(), bookDto.getSold(), bookDto.getImage());
         return bookRepository.save(book);
         } else return null;
     }
