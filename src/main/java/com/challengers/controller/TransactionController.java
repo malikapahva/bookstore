@@ -39,7 +39,7 @@ public class TransactionController {
             return new ResponseEntity<>("Transaction Completed" + transaction.getTransactionId(), httpHeaders, HttpStatus.CREATED);
         }
         catch (Exception ex){
-            return new ResponseEntity<>("Transaction Failed " + ex.getMessage(), httpHeaders, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Transaction Failed " + ex.getMessage(), httpHeaders, HttpStatus.FOUND);
         }
     }
 

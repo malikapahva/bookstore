@@ -63,7 +63,7 @@ public class BookController {
                 .buildAndExpand()
                 .toUri());
         if(book != null){
-            return new ResponseEntity<>("Book already existed.", httpHeaders, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Book already existed.", httpHeaders, HttpStatus.FOUND);
         } else {
             return new ResponseEntity<>("Book Added Successfully, book id : " + book.getBookId(), httpHeaders, HttpStatus.CREATED);
         }
