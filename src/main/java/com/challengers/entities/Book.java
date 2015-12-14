@@ -53,10 +53,13 @@ public class Book implements Serializable {
     @Column(name = "image")
     private String image;
 
+    @Column(name = "user_id")
+    private Long userId;
+
     public Book() {
     }
 
-    public Book(String book_title, Set<String> author_name, Set<String> publisher_name, int published_year, String isbn, String language,double price, int quantity, int sold, String image) {
+    public Book(String book_title, Set<String> author_name, Set<String> publisher_name, int published_year, String isbn, String language,double price, int quantity, int sold, String image, Long userId) {
         this.bookId = UniqueIdGenerator.generateId();
         this.bookTitle = book_title;
         this.authorNames = author_name;
@@ -68,6 +71,7 @@ public class Book implements Serializable {
         this.quantity = quantity;
         this.sold = sold;
         this.image = image;
+        this.userId = userId;
     }
 
     public Long getBookId() {
@@ -152,6 +156,14 @@ public class Book implements Serializable {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public void setSold(int sold) {
