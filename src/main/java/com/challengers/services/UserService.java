@@ -42,8 +42,6 @@ public class UserService {
     public User updateUser(Long userId,UserDto userDto) {
         User user = userRepository.findOne(userId);
         if(user != null) {
-            user.setUserName(userDto.getUserName());
-            user.setPassword(userDto.getPassword());
             user.setFirstName(userDto.getFirstName());
             user.setMiddleName(userDto.getMiddleName());
             user.setLastName(userDto.getLastName());

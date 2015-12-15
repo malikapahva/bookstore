@@ -49,6 +49,11 @@ public class BookController {
         return bookService.findBookByIsbn(isbn);
     }
 
+    @RequestMapping("/isbn")
+    public Book findBookByIsbn(@RequestParam String isbn) throws JsonProcessingException {
+        return bookService.findBookByIsbn(isbn);
+    }
+
     @RequestMapping("/language/{language}")
     public List<Book> getByLanguage(@PathVariable String language) throws JsonProcessingException {
         return bookService.findBookByLanguage(language);
@@ -62,7 +67,7 @@ public class BookController {
                 .fromCurrentRequest()
                 .buildAndExpand()
                 .toUri());
-        if(book != null){
+        if(book == null){
             return new ResponseEntity<>("Book already existed.", httpHeaders, HttpStatus.FOUND);
         } else {
             return new ResponseEntity<>("Book Added Successfully, book id : " + book.getBookId(), httpHeaders, HttpStatus.CREATED);
